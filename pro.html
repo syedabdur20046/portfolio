@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Syed Abdur Rehman - Data Analyst &amp; Frontend Developer Portfolio">
+    <title>Syed Abdur Rehman | Data Analyst &amp; Frontend Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500&amp;display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --text-color: #f8fafc;
+            --accent-color: #64748b;
+            --card-bg: #1e2937;
+            --border-color: #334155;
+            --shadow-color: rgba(15, 23, 42, 0.3);
+        }
+        
+        .light {
+            --bg-color: #f8fafc;
+            --text-color: #0f172a;
+            --accent-color: #64748b;
+            --card-bg: #ffffff;
+            --border-color: #e2e8f0;
+            --shadow-color: rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system_ui, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 500;
+            line-height: 1.2;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background-color: var(--bg-color);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--border-color);
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-color);
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--card-bg);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.75rem;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .hero {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 6rem 2rem 5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content .title {
+            font-size: 1.75rem;
+            color: var(--accent-color);
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .hero-content p {
+            font-size: 1.25rem;
+            max-width: 520px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+            line-height: 1.55;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 32px;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1.05rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 40%;
+            height: 300%;
+            background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+            transform: skewX(-25deg);
+            animation: shine 4s infinite linear;
+            opacity: 0;
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+            animation: shine 1.5s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-150%) skewX(-25deg); }
+            100% { transform: translateX(300%) skewX(-25deg); }
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #f8fafc;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 20px 25px -5px var(--shadow-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-color);
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--card-bg);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-image img {
+            width: 340px;
+            height: 340px;
+            object-fit: cover;
+            object-position: top center;
+            border-radius: 24px;
+            box-shadow: 0 25px 50px -12px var(--shadow-color);
+            border: 8px solid var(--card-bg);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .hero-image img:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+
+        section {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        .section-header {
+            font-size: 2.25rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-header:after {
+            content: '';
+            width: 64px;
+            height: 3px;
+            background: var(--accent-color);
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 9999px;
+        }
+
+        .about-text {
+            font-size: 1.25rem;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+
+        .experience-grid,
+        .projects-grid,
+        .education-grid,
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 2rem;
+        }
+
+        .experience-card,
+        .project-card,
+        .edu-card,
+        .cert-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 10px 15px -3px var(--shadow-color);
+        }
+
+        .experience-card:hover,
+        .project-card:hover,
+        .edu-card:hover,
+        .cert-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 25px 25px 50px -12px var(--shadow-color);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .experience-role {
+            font-size: 1.35rem;
+            font-weight: 600;
+        }
+
+        .experience-company {
+            color: var(--accent-color);
+            font-weight: 500;
+        }
+
+        .experience-duration {
+            font-size: 0.95rem;
+            background: var(--border-color);
+            color: var(--text-color);
+            padding: 4px 14px;
+            border-radius: 9999px;
+            white-space: nowrap;
+        }
+
+        .experience-achievements ul {
+            list-style: none;
+        }
+
+        .experience-achievements li {
+            padding: 8px 0;
+            position: relative;
+            padding-left: 28px;
+        }
+
+        .experience-achievements li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .project-card-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .project-lang {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.85rem;
+            background: rgba(100, 116, 139, 0.15);
+            padding: 4px 12px;
+            border-radius: 9999px;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .project-card p {
+            font-size: 1.05rem;
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-footer {
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .skills-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .skill-tag {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 24px;
+            border-radius: 9999px;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px var(--shadow-color);
+        }
+
+        .skill-tag:hover {
+            background: var(--accent-color);
+            color: #f8fafc;
+            transform: scale(1.08);
+        }
+
+        .contact-content {
+            max-width: 640px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-links a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 28px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 9999px;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-links a:hover {
+            background: var(--accent-color);
+            color: #f8fafc;
+            transform: translateY(-4px);
+        }
+
+        .footer {
+            border-top: 1px solid var(--border-color);
+            padding: 3rem 2rem;
+            text-align: center;
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        /* ==================== RESPONSIVE FIXES ==================== */
+        
+        /* Laptop / Desktop (default is already good) */
+        @media (min-width: 1025px) {
+            .hero { padding: 7rem 2rem 6rem; }
+            section { padding: 6rem 2rem; }
+        }
+
+        /* Tablet (768px - 1024px) */
+        @media (max-width: 1024px) {
+            .hero { 
+                padding: 5rem 1.5rem 4rem; 
+                gap: 3rem;
+            }
+            .hero-image img {
+                width: 300px;
+                height: 300px;
+            }
+            section {
+                padding: 4.5rem 1.5rem;
+            }
+            .experience-grid,
+            .projects-grid {
+                gap: 1.75rem;
+            }
+        }
+
+        /* Mobile (< 768px) - Tight spacing */
+        @media (max-width: 768px) {
+            .nav-container {
+                padding: 1rem 1rem;
+            }
+            
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 3.5rem 1rem 3rem;
+                gap: 2.5rem;
+                text-align: center;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.6rem;
+            }
+            
+            .hero-content .title {
+                font-size: 1.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+                max-width: 100%;
+                margin-bottom: 1.75rem;
+            }
+            
+            .hero-image img {
+                width: 260px;
+                height: 260px;
+            }
+            
+            section {
+                padding: 3.5rem 1rem;
+            }
+            
+            .section-header {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+            
+            .experience-card,
+            .project-card,
+            .edu-card,
+            .cert-card {
+                padding: 1.75rem;
+            }
+            
+            .projects-grid,
+            .experience-grid,
+            .education-grid,
+            .cert-grid {
+                gap: 1.5rem;
+            }
+            
+            .hero-buttons {
+                gap: 0.75rem;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Extra small mobile (< 480px) */
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 1rem 2.5rem;
+            }
+            .hero-image img {
+                width: 240px;
+                height: 240px;
+            }
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="#" class="nav-logo">Syed Abdur Rehman</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-right">
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+                    <svg id="sunIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    <svg id="moonIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">☰</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="hero">
+        <div class="hero-content animate-on-scroll">
+            <h1>Syed Abdur Rehman</h1>
+            <div class="title">Data Analyst &amp; Frontend Developer</div>
+            <p>Data Analyst and frontend developer with 1+ years of experience in analyzing complex datasets and delivering actionable insights. Proficient in AI-driven automation and modern tools to support data-informed decision-making and business strategy.</p>
+            
+            <div class="hero-buttons">
+                <a href="https://www.linkedin.com/in/syed-abdur-rehman-56a9b2303/" target="_blank" class="btn btn-primary">
+                    Connect on LinkedIn
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 8l4 4m0 0l-4 4m4-4v12M3 12l2-2m0 0l2-2" /></svg>
+                </a>
+                <a href="https://github.com/syedabdur20046" target="_blank" class="btn btn-secondary">
+                    View GitHub
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 4L2 8l4 4" /></svg>
+                </a>
+                <a href="mailto:syedabdur20046@gmail.com" class="btn btn-secondary">
+                    Email Me
+                </a>
+            </div>
+            <p style="margin-top: 2rem; font-size: 1rem; opacity: 0.75;">📍 Manyata Tech Park, Bengaluru, Karnataka, India</p>
+        </div>
+        
+        <div class="hero-image animate-on-scroll">
+            <img src="https://www.image2url.com/r2/default/images/1776090756039-ed727bd7-4e61-4d93-a70c-e9da7707a504.jpeg" 
+                 alt="Syed Abdur Rehman - Professional Headshot">
+        </div>
+    </header>
+
+    <!-- ABOUT -->
+    <section id="about">
+        <h2 class="section-header animate-on-scroll">About Me</h2>
+        <p class="about-text animate-on-scroll">
+            Graduate fresher passionate about turning data into actionable insights and crafting delightful digital experiences. 
+            With hands-on experience in interactive dashboards, AI-powered web applications, and modern frontend development, 
+            I bridge the gap between complex data and beautiful user interfaces.
+        </p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience" style="background: var(--card-bg);">
+        <h2 class="section-header animate-on-scroll">Work Experience</h2>
+        <div class="experience-grid">
+            <div class="experience-card animate-on-scroll">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-role">Frontend Developer &amp; Dashboard Specialist</div>
+                        <div class="experience-company">UK Innovative (Freelance)</div>
+                    </div>
+                    <div class="experience-duration">Apr 2024 – Oct 2025</div>
+                </div>
+                <div class="experience-achievements">
+                    <ul>
+                        <li>Designed and implemented interactive dashboards that improved data visualization and decision-making</li>
+                        <li>Built complex multi-step forms with seamless user experience and validation</li>
+                        <li>Developed virtualized rendering for high-performance tables and lists</li>
+                        <li>Connected various web pages to create cohesive user journeys</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="experience-card animate-on-scroll">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-role">AI Web Development Intern</div>
+                        <div class="experience-company">Shadowfox</div>
+                    </div>
+                    <div class="experience-duration">Jul 2025 – Aug 2025</div>
+                </div>
+                <div class="experience-achievements">
+                    <ul>
+                        <li>Developed AI-integrated web applications and modern interfaces</li>
+                        <li>Collaborated on full-stack features using latest web technologies</li>
+                        <li>Delivered high-quality, production-ready code</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="experience-card animate-on-scroll">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-role">AI Full-Stack Web Development Intern</div>
+                        <div class="experience-company">Prodigy Infotech</div>
+                    </div>
+                    <div class="experience-duration">Aug 2025</div>
+                </div>
+                <div class="experience-achievements">
+                    <ul>
+                        <li>Built end-to-end AI-powered web solutions</li>
+                        <li>Implemented responsive and accessible user interfaces</li>
+                        <li>Gained deep expertise in full-stack development</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="experience-card animate-on-scroll">
+                <div class="experience-header">
+                    <div>
+                        <div class="experience-role">AI Full-Stack Web Development Intern</div>
+                        <div class="experience-company">FutureInterns</div>
+                    </div>
+                    <div class="experience-duration">Aug 2025 – Sep 2025</div>
+                </div>
+                <div class="experience-achievements">
+                    <ul>
+                        <li>Contributed to multiple AI-driven full-stack projects</li>
+                        <li>Optimized frontend performance and user experience</li>
+                        <li>Worked with modern frameworks and AI tooling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section id="projects">
+        <h2 class="section-header animate-on-scroll">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card animate-on-scroll">
+                <div class="project-card-header">
+                    <div class="project-lang"><span style="display:inline-block;width:10px;height:10px;background:#f1e05a;border-radius:50%;"></span> Python</div>
+                    <h3>Eye Controller Mouse</h3>
+                    <p>Developed an eye-tracking mouse system enabling hands-free computer control using real-time gaze detection.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color:var(--accent-color);font-weight:600;">Featured in Resume</span>
+                </div>
+            </div>
+            <div class="project-card animate-on-scroll">
+                <div class="project-card-header">
+                    <div class="project-lang"><span style="display:inline-block;width:10px;height:10px;background:#f1e05a;border-radius:50%;"></span> Python</div>
+                    <h3>Advanced Cyberbullying Detection</h3>
+                    <p>Integrating Pytesseract, Demoji, and BERT for comprehensive textual and visual content analysis.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color:var(--accent-color);font-weight:600;">Featured in Resume</span>
+                </div>
+            </div>
+            <div class="project-card animate-on-scroll">
+                <div class="project-card-header">
+                    <div class="project-lang"><span style="display:inline-block;width:10px;height:10px;background:#3776ab;border-radius:50%;"></span> Python</div>
+                    <h3>Dynamic Pricing Dashboard</h3>
+                    <p>Streamlit-based dashboard that automatically calculates demand from transaction data, performs time-series forecasting, and recommends optimal prices.</p>
+                </div>
+                <div class="project-footer">
+                    <span style="color:var(--accent-color);font-weight:600;">Featured in Resume</span>
+                </div>
+            </div>
+            <div class="project-card animate-on-scroll">
+                <div class="project-card-header">
+                    <div class="project-lang"><span style="display:inline-block;width:10px;height:10px;background:#f1e05a;border-radius:50%;"></span> JavaScript</div>
+                    <h3>Rebrand</h3>
+                    <p>A sleek, modern reimagining of the Apple brand website, built with responsive design and clean UI/UX principles.</p>
+                </div>
+                <div class="project-footer">
+                    <a href="https://github.com/syedabdur20046/Rebrand" target="_blank" style="color:var(--accent-color);font-weight:600;text-decoration:none;">View on GitHub →</a>
+                </div>
+            </div>
+            <div class="project-card animate-on-scroll">
+                <div class="project-card-header">
+                    <div class="project-lang"><span style="display:inline-block;width:10px;height:10px;background:#f1e05a;border-radius:50%;"></span> HTML</div>
+                    <h3>RCB Team Website</h3>
+                    <p>IPL Team Website for Royal Challengers Bengaluru. Modern, responsive website built with HTML, CSS, and JavaScript.</p>
+                </div>
+                <div class="project-footer">
+                    <a href="https://github.com/syedabdur20046/RCB-Team-website-shadowfox" target="_blank" style="color:var(--accent-color);font-weight:600;text-decoration:none;">View on GitHub →</a>
+                </div>
+            </div>
+            <div class="project-card animate-on-scroll">
+                <div class="project-card-header">
+                    <div class="project-lang"><span style="display:inline-block;width:10px;height:10px;background:#f1e05a;border-radius:50%;"></span> HTML</div>
+                    <h3>Sakthi Dental Clinic</h3>
+                    <p>Website for Sakthi Dental Clinic, Hosur. Built using HTML5, CSS3, and JavaScript. Showcases services, facilities, testimonials, FAQs.</p>
+                </div>
+                <div class="project-footer">
+                    <a href="https://github.com/syedabdur20046/Sakthi-Dental-Clinic" target="_blank" style="color:var(--accent-color);font-weight:600;text-decoration:none;">View on GitHub →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS, CERTIFICATIONS, EDUCATION, CONTACT, FOOTER (unchanged) -->
+    <section id="skills" style="background: var(--card-bg);">
+        <h2 class="section-header animate-on-scroll">Skills &amp; Tools</h2>
+        <div class="skills-cloud animate-on-scroll">
+            <div class="skill-tag">Python</div>
+            <div class="skill-tag">JavaScript</div>
+            <div class="skill-tag">HTML5</div>
+            <div class="skill-tag">CSS3</div>
+            <div class="skill-tag">React.js</div>
+            <div class="skill-tag">SQL</div>
+            <div class="skill-tag">TensorFlow</div>
+            <div class="skill-tag">PyTorch</div>
+            <div class="skill-tag">Scikit-learn</div>
+            <div class="skill-tag">Power BI</div>
+            <div class="skill-tag">Git &amp; GitHub</div>
+            <div class="skill-tag">Data Visualization</div>
+            <div class="skill-tag">Dashboard Development</div>
+            <div class="skill-tag">Responsive Design</div>
+            <div class="skill-tag">AI Agents</div>
+            <div class="skill-tag">Data Cleaning</div>
+            <div class="skill-tag">VS Code</div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <h2 class="section-header animate-on-scroll">Certifications</h2>
+        <div class="cert-grid">
+            <div class="cert-card animate-on-scroll">
+                <h3>HTML &amp; CSS Programming – Beginner to Master</h3>
+                <p style="margin: 1rem 0 0.5rem; color: var(--accent-color); font-weight: 600;">Udemy</p>
+                <p style="font-size: 1.1rem;">April 2025</p>
+            </div>
+            <div class="cert-card animate-on-scroll">
+                <h3>AI Agents Intensive Course (Google × Kaggle)</h3>
+                <p style="margin: 1rem 0 0.5rem; color: var(--accent-color); font-weight: 600;">Google × Kaggle</p>
+                <p style="font-size: 1.1rem;">5 Days • December 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" style="background: var(--card-bg);">
+        <h2 class="section-header animate-on-scroll">Education</h2>
+        <div class="education-grid">
+            <div class="edu-card animate-on-scroll">
+                <h3>Bachelor of Engineering in Computer Science</h3>
+                <p style="margin: 1rem 0 0.5rem; color: var(--accent-color); font-weight: 600;">HKBK College of Engineering, Bengaluru</p>
+                <p style="font-size: 1.1rem;">Dec 2022 – Present • CGPA: 8.13</p>
+            </div>
+            <div class="edu-card animate-on-scroll">
+                <h3>Pre-University</h3>
+                <p style="margin: 1rem 0 0.5rem; color: var(--accent-color); font-weight: 600;">Narayana Junior College, Kadapa, AP</p>
+                <p style="font-size: 1.1rem;">Jun 2020 – Apr 2022 • 72.9%</p>
+            </div>
+            <div class="edu-card animate-on-scroll">
+                <h3>High School</h3>
+                <p style="margin: 1rem 0 0.5rem; color: var(--accent-color); font-weight: 600;">Nagarjuna Model School, Kadapa, AP</p>
+                <p style="font-size: 1.1rem;">Jun 2016 – Apr 2020 • 83.3%</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-content animate-on-scroll">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">Let's Build Something Great Together</h2>
+            <p style="font-size: 1.25rem; max-width: 460px; margin: 0 auto 3rem;">Open to opportunities, collaborations, or just a quick chat about data, AI, or beautiful interfaces.</p>
+            <div class="contact-links">
+                <a href="mailto:syedabdur20046@gmail.com" target="_blank">📧 syedabdur20046@gmail.com</a>
+                <a href="https://www.linkedin.com/in/syed-abdur-rehman-56a9b2303/" target="_blank">🔗 LinkedIn</a>
+                <a href="https://github.com/syedabdur20046" target="_blank">🐙 GitHub</a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>© 2026 Syed Abdur Rehman • Built as a single-file premium portfolio with ❤️</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">Dark mode enabled • Fully responsive • Smooth animations</p>
+    </footer>
+
+    <script>
+        function initThemeToggle() {
+            const toggleBtn = document.getElementById('themeToggle');
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            let isLight = false;
+            toggleBtn.addEventListener('click', () => {
+                isLight = !isLight;
+                if (isLight) {
+                    document.body.classList.add('light');
+                    sunIcon.style.display = 'none';
+                    moonIcon.style.display = 'block';
+                } else {
+                    document.body.classList.remove('light');
+                    sunIcon.style.display = 'block';
+                    moonIcon.style.display = 'none';
+                }
+            });
+        }
+        function initMobileMenu() {
+            const menuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            menuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                menuBtn.innerHTML = navLinks.classList.contains('active') ? '✕' : '☰';
+            });
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    menuBtn.innerHTML = '☰';
+                });
+            });
+        }
+        function initScrollAnimations() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.15 });
+            elements.forEach(el => observer.observe(el));
+        }
+        function initNavbarScroll() {
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 80) {
+                    navbar.style.boxShadow = '0 10px 15px -3px rgba(15, 23, 42, 0.2)';
+                    navbar.style.padding = '0.75rem 2rem';
+                } else {
+                    navbar.style.boxShadow = 'none';
+                    navbar.style.padding = '1rem 2rem';
+                }
+            });
+        }
+        function initializePortfolio() {
+            initThemeToggle();
+            initMobileMenu();
+            initScrollAnimations();
+            initNavbarScroll();
+            console.log('%c✅ Responsive spacing fixed for Mobile, Tablet & Laptop!', 'color:#64748b;font-family:Space Grotesk;font-size:13px');
+        }
+        window.onload = initializePortfolio;
+    </script>
+</body>
+</html>
